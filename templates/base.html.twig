@@ -7,6 +7,10 @@
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
+    <header>
+        {% include 'navbar.html.twig' %}
+    </header>
+
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}

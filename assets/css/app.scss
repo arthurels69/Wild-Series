@@ -1,5 +1,14 @@
-@import "~bootstrap/scss/bootstrap";
+$theme-colors:(
+        "primary": #315C82,
+        "secondary": #DFE4E8,
+        "black": #1E2226
+);
 
-body {
-    background-color: red;
-}
+
+@import "~bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
+
+
+
+
+
