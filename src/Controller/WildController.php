@@ -35,7 +35,6 @@ class WildController extends AbstractController
     public function show( string $slug)
     {
         $slug=ucwords(str_replace("-", " ", $slug));
-        var_dump($slug);
         return $this->render('wild/show.html.twig',[
             'slug'=>$slug
         ]);
