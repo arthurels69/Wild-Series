@@ -132,4 +132,5 @@ class Episode
 
         return $this;
     }
+
 }
