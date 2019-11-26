@@ -1,34 +1,43 @@
-
 {% extends 'base.html.twig' %}
 {% block title %}
     {% if category is defined %}
         {{ category }}
-        {% else %}
+    {% else %}
         {{ program.title }}
     {% endif %}
 {% endblock %}
 {% block  body %}
-<div class="w-50">
-    {% if movies is defined %}
+    <div class="w-50">
+        {% if movies is defined %}
 
-        {% for movie in movies %}
+            {% for movie in movies %}
+                <div class="media  mb-5">
+                    <img class="align-self-start mr-3" src="{{ movie.poster }}" alt="{{ movie.title }} poster">
+                    <div class="media-body">
+                        <h1 class="mt-0">
 
-            <ul >
-                <li>{{ movie.id }}</li>
-                <li> <a href="{{ path('wild_show_program', {slug: movie.title |lower|replace({' ': '-'})}) }}"> {{ movie.title }}</a> </li>
-                <li>  {{ movie.summary }}</li>
-            </ul>
+                                <a href="{{ path('wild_show_program', {slug: movie.title |lower|replace({' ': '-'})}) }}"> {{ movie.title }}</a>
 
-        {% endfor %}
-    {% endif %}
-    {% if program is defined %}
-        <h1>{{ program.title }}</h1>
-        <ul>
-            {% for season in program.seasons %}
-            <li><a href="{{ path ('wild_show_season',{'id': season.id }) }}">Saison {{ season.description }}</a></li>
+                        </h1>
+                        <p> {{ movie.summary }}</p>
+
+                    </div>
+                </div>
+
+
+
             {% endfor %}
-        </ul>
-        <a class="btn btn-secondary" href="{{ path ('wild_show_category', {'categoryName': program.category.name}) }}">retour</a>
-    {% endif %}
-</div>
+        {% endif %}
+        {% if program is defined %}
+            <h1>{{ program.title }}</h1>
+            <ul>
+                {% for season in program.seasons %}
+                    <li><a href="{{ path ('wild_show_season',{'id': season.id }) }}">Saison {{ season.description }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a class="btn btn-secondary"
+               href="{{ path ('wild_show_category', {'categoryName': program.category.name}) }}">retour</a>
+        {% endif %}
+    </div>
 {% endblock %}
