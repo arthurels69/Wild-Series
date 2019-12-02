@@ -1,12 +1,44 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ category }}{% endblock %}
+{% block title %}
+    {% if category is defined %}
+        {{ category }}
+    {% else %}
+        {{ program.title }}
+    {% endif %}
+{% endblock %}
 {% block  body %}
-    {% for movie in movies %}
-        <ul>
-            <li>{{ movie.id }}</li>
-            <li>  {{ movie.title }}</li>
-            <li>  {{ movie.summary }}</li>
-        </ul>
+    <div class="w-50">
+        {% if movies is defined %}
 
-    {% endfor %}
+            {% for movie in movies %}
+                <div class="media  mb-5">
+                    <img class="align-self-start mr-3" src="{{ movie.poster }}" alt="{{ movie.title }} poster">
+                    <div class="media-body">
+                        <h1 class="mt-0">
+
+                                <a href="{{ path('wild_show_program', {slug: movie.title |lower|replace({' ': '-'})}) }}"> {{ movie.title }}</a>
+
+                        </h1>
+                        <p> {{ movie.summary }}</p>
+
+                    </div>
+                </div>
+
+
+
+            {% endfor %}
+        {% endif %}
+        {% if program is defined %}
+
+            <h1>{{ program.title }}</h1>
+            <ul>
+                {% for season in program.seasons %}
+                    <li><a href="{{ path ('wild_show_season',{'id': season.id }) }}">Saison {{ season.description }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <a class="btn btn-secondary"
+               href="{{ path ('wild_show_category', {'categoryName': program.category.name}) }}">retour</a>
+        {% endif %}
+    </div>
 {% endblock %}
