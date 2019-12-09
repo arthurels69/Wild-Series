@@ -10,3 +10,5 @@ Lien vidéo quetes 12: https://www.loom.com/share/ad9eacc1cdd04de38bff094038a764
 lien vidéo quetes 13: https://www.loom.com/share/2e0b188d47bc410d9fd4d464b023edd9
 
 lien vidéo quetes 16: https://www.loom.com/share/9e5b7a24ad0548018f007de18936f70b
+
+lien vidéo quetes 18: https://www.loom.com/share/af1dcc9876a9411ca52e467a5aade217
