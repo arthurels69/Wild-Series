@@ -9,6 +9,7 @@ use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -42,12 +43,14 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $slugify=new Slugify;
+        $faker  =  Faker\Factory::create('fr_FR');
         $i=0;
         foreach (self::PROGRAMS as $title=> $data){
             $program = new Program();
             $program->setTitle($title);
             $slug = $slugify->generate($program->getTitle());
             $program->setSlug($slug);
+            $program->setPoster($faker->imageUrl());
             $program->setSummary($data['summary']);
             $this->addReference('program_' . $i, $program);
             $program->setCategory($this->getReference('categorie_4'));
