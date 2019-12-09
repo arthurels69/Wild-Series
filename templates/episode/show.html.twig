@@ -7,28 +7,63 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ episode.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ episode.title }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ episode.number }}</td>
-            </tr>
-            <tr>
-                <th>Synopsis</th>
-                <td>{{ episode.synopsis }}</td>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ episode.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ episode.title }}</td>
+        </tr>
+        <tr>
+            <th>Number</th>
+            <td>{{ episode.number }}</td>
+        </tr>
+        <tr>
+            <th>Synopsis</th>
+            <td>{{ episode.synopsis }}</td>
+        </tr>
+        <tr>
+
+        </tr>
         </tbody>
+    </table> <a class="btn btn-secondary mb-3" href="{{ path('episode_index') }}">back to list</a>
+
+    <a class="btn btn-secondary mb-3" href="{{ path('episode_edit', {'slug': episode.slug}) }}">edit</a>
+    <br>
+
+    <a class="btn btn-danger">{{ include('episode/_delete_form.html.twig') }}</a>
+    <h2>Commentaires</h2>
+    <table class="table">
+        <thead>
+        <td>Note</td>
+        <td>Comments</td>
+        <td>User</td>
+
+        </thead>
+        {% if episode.comments %}
+    {% for comment in episode.comments %}
+     <tr> <td>  {{ comment.rate }}</td>
+
+      <td>{{ comment.comment }}</td>
+       <td> {{ comment.user.email }}</td></tr>
+    {% endfor %}
+        {% endif %}
+
     </table>
 
-    <a href="{{ path('episode_index') }}">back to list</a>
 
-    <a href="{{ path('episode_edit', {'slug': episode.slug}) }}">edit</a>
 
-    {{ include('episode/_delete_form.html.twig') }}
+
+
+    {% if app.user %}
+        <h4>Create new Comment</h4>
+        {{ form_start(form) }}
+        {{ form_row(form.episode, {'title':episode.title}) }}
+
+        {{ form_widget(form) }}
+        <button class="btn btn-primary mb-5">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+    {% endif %}
+
 {% endblock %}

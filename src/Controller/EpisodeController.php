@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Episode;
+use App\Form\CommentType;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
 use App\Service\Slugify;
@@ -42,7 +44,7 @@ class EpisodeController extends AbstractController
             $entityManager->persist($episode);
             $entityManager->flush();
 
-            return $this->redirectToRoute('episode_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('episode/new.html.twig', [
@@ -52,11 +54,28 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="episode_show", methods={"GET"})
+     * @Route("/{slug}", name="episode_show", methods={"GET", "POST"})
      */
-    public function show(Episode $episode): Response
+    public function show( Request $request,Episode $episode): Response
     {
+        $comment=new Comment();
+        $comment->setEpisode($episode);
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            return $this->render('episode/show.html.twig', [
+
+                'form' => $form->createView(),
+                'episode' => $episode,
+            ]);
+        }
         return $this->render('episode/show.html.twig', [
+
+            'form' => $form->createView(),
             'episode' => $episode,
         ]);
     }

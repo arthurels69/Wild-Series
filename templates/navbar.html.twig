@@ -20,7 +20,16 @@
                 <a class="nav-link " href="{{ path('actor_index') }}" >Acteur</a>
             </li>
 
-        </ul>
 
+        </ul>
+        <div class="nav-item text-right">
+            {% if app.user %}
+                <p class="text-white">{{ app.user.email }}</p>
+                <a href="{{ path('app_logout') }}" class="text-whitebtn btn btn-danger" > Se déconnecter</a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="text-dark btn btn-secondary"> Se connecter</a>
+            {% endif %}
+
+        </div>
     </div>
 </nav>
