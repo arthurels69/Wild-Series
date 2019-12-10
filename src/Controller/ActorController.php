@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/actor")
- * @IsGranted("ROLE_ADMIN")
  */
 class ActorController extends AbstractController
 {

@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/season")
- * @IsGranted("ROLE_ADMIN")
  */
 class SeasonController extends AbstractController
 {

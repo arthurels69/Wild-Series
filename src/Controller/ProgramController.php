@@ -18,7 +18,6 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 
 /**
- * @IsGranted("ROLE_ADMIN")
  * @Route("/program")
  */
 class ProgramController extends AbstractController

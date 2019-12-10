@@ -1,5 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block  body %}
-    <h1>Bienvenue</h1>
+    <h1 class="text-center m-5">Les dernières séries</h1>
+    <div class="container "><div class="row">
+        {% for program in programs|slice(0, 8) %}
+
+                <div class="col-4 mb-3">
+                    <div class="card">
+                        <div class="card-title">
+                            {{ program.title }}
+                        </div>
+                        <div class="card-body">
+                            {{ program.summary }}
+                            <img class="w-50" src="{{ program.poster }}">
+                        </div>
+
+                    </div>
+                </div>
+
+        {% endfor %}
+    </div>  </div>
 {% endblock %}

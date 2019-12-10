@@ -30,9 +30,10 @@
         <div class="nav-item text-right">
             {% if app.user %}
                 <p class="text-white">{{ app.user.email }}</p>
-                <a href="{{ path('app_logout') }}" class="text-whitebtn btn btn-danger" > Se déconnecter</a>
+                <a href="{{ path('app_logout') }}" class="text-white btn btn btn-danger" > Se déconnecter</a>
+                <a href="{{  path('profile', {'email': app.user.email}) }}" class="text-white btn btn btn-success" > Mon compte</a>
             {% else %}
-                <a href="{{ path('app_login') }}" class="text-dark btn btn-secondary"> Se connecter</a>
+                <a href="{{ path('app_login') }}" class="text-dark btn btn-warning"> Se connecter</a>
             {% endif %}
 
         </div>
