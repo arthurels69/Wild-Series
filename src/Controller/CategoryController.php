@@ -10,11 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class CategoryController extends AbstractController
 {
     /**
      * @Route("/category", name="category")
+     * @isGranted("ROLE_ADMIN")
      */
     public function index(Request $request) : Response
     {

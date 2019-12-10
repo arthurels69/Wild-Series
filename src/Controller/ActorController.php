@@ -6,6 +6,7 @@ use App\Entity\Actor;
 use App\Form\ActorType;
 use App\Repository\ActorRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/actor")
+ * @IsGranted("ROLE_ADMIN")
  */
 class ActorController extends AbstractController
 {

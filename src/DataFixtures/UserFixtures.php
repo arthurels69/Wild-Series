@@ -17,9 +17,8 @@ class UserFixtures extends Fixture
     {
         // Création d’un utilisateur de type “auteur”
         $subscriberauthor = new User();
-        $subscriberauthor->setEmail('ath@wild.com');
-        $subscriberauthor->setRoles(['ROLE_SUBSCRIBERAUTHOR']);
-        $subscriberauthor->setUser(null);
+        $subscriberauthor->setEmail('ath@wild');
+        $subscriberauthor->setRoles(['ROLE_SUBSCRIBER']);
         $subscriberauthor->setPassword($this->passwordEncoder->encodePassword(
             $subscriberauthor,
             'aze'
@@ -29,12 +28,11 @@ class UserFixtures extends Fixture
 
         // Création d’un utilisateur de type “administrateur”
         $admin = new User();
-        $admin->setEmail('admin@monsite.com');
+        $admin->setEmail('admin@wild');
         $admin->setRoles(['ROLE_ADMIN']);
-        $subscriberauthor->setUser(null);
         $admin->setPassword($this->passwordEncoder->encodePassword(
             $admin,
-            'adminpassword'
+            'aze'
         ));
 
         $manager->persist($admin);

@@ -6,6 +6,7 @@ use App\Entity\Program;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 
 /**
+ * @IsGranted("ROLE_ADMIN")
  * @Route("/program")
  */
 class ProgramController extends AbstractController

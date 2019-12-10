@@ -27,12 +27,15 @@
 
         </tr>
         </tbody>
-    </table> <a class="btn btn-secondary mb-3" href="{{ path('episode_index') }}">back to list</a>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-secondary mb-3" href="{{ path('episode_index') }}">back to list</a>
 
     <a class="btn btn-secondary mb-3" href="{{ path('episode_edit', {'slug': episode.slug}) }}">edit</a>
     <br>
 
     <a class="btn btn-danger">{{ include('episode/_delete_form.html.twig') }}</a>
+    {% endif %}
     <h2>Commentaires</h2>
     <table class="table">
         <thead>
@@ -46,9 +49,10 @@
      <tr> <td>  {{ comment.rate }}</td>
 
       <td>{{ comment.comment }}</td>
-       <td> {{ comment.user.email }}</td></tr>
-    {% endfor %}
-        {% endif %}
+       <td> {{ comment.user.email }}</td>
+       <td>{% if is_granted('ROLE_USER') %}    {{ include('comment/_delete_form.html.twig') }} {% endif %}
+           {% endfor %}</td>
+        {% endif %}</tr>
 
     </table>
 
@@ -56,7 +60,8 @@
 
 
 
-    {% if app.user %}
+    {% if is_granted('ROLE_USER') %}
+
         <h4>Create new Comment</h4>
         {{ form_start(form) }}
         {{ form_row(form.episode, {'title':episode.title}) }}
@@ -64,6 +69,7 @@
         {{ form_widget(form) }}
         <button class="btn btn-primary mb-5">{{ button_label|default('Save') }}</button>
         {{ form_end(form) }}
+
     {% endif %}
 
 {% endblock %}
