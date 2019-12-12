@@ -23,7 +23,6 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
     public function load (ObjectManager $manager)
     {
         $faker  =  Faker\Factory::create('fr_FR');
-        $i=0;
         $slugify= new Slugify;
         foreach (self::ACTORS as $name){
 
@@ -33,14 +32,14 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
             $actor->setSlug($slug);
             $actor->addProgram($this->getReference('program_0'));
             $manager->persist($actor);
-          ;
+
         }
-        for ($i=0 ; $i<50 ; $i++){
+        for ($i=0 ; $i<1000 ; $i++){
             $actor=new Actor();
             $actor->setName($faker->name);
             $slug = $slugify->generate($actor->getName());
             $actor->setSlug($slug);
-            $actor->addProgram($this->getReference('program_'.random_int(0, 5)));
+            $actor->addProgram($this->getReference('program_'.random_int(0, 999)));
             $manager->persist($actor);
         }
         $manager->flush();

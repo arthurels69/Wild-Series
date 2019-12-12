@@ -57,7 +57,16 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($program);
             $i++;
         }
-        $this->addReference('walking', $program);
+        for ($i = 6; $i <= 1000; $i++) {
+        $program = new Program();
+        $program->setSlug($slug);
+        $program->setTitle($faker->sentence(4, true));
+        $program->setSummary($faker->text(100));
+        $this->addReference('program_' . $i, $program);
+        $program->setCategory($this->getReference('categorie_'.rand(0,1000)));
+        $program->setPoster($faker->imageUrl());
+        $manager->persist($program);
+        }
         $manager->flush();
     }
 
