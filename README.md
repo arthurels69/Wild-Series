@@ -17,4 +17,4 @@ lien vidéo quetes 20: https://www.loom.com/share/b2d688b0fd954d818b187c503b1820
 
 lien vidéo quetes 21: https://www.loom.com/share/4a4602520b0d4a33a813bbcd407d4fca
 
-lien vidéo quetes 24: https://www.loom.com/share/6cdbf85ab0fb4b8c80b83761b84b2ec1
+lien vidéo quetes 23: https://www.loom.com/share/6cdbf85ab0fb4b8c80b83761b84b2ec1
