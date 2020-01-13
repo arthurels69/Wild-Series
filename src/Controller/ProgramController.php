@@ -56,7 +56,7 @@ class ProgramController extends AbstractController
                 ->subject('une nouvelle série a été crée')
                 ->html($template);
             $mailer->send($email);
-
+            $this->addFlash('success', 'The new program has been created');
             return $this->redirectToRoute('program_index');
         }
 
@@ -107,6 +107,8 @@ class ProgramController extends AbstractController
             $entityManager->remove($program);
             $entityManager->flush();
         }
+        $this->addFlash('danger', 'The program has been deleted');
+
 
         return $this->redirectToRoute('program_index');
     }

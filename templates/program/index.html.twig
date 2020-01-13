@@ -3,8 +3,10 @@
 {% block title %}Program index{% endblock %}
 
 {% block body %}
-    <h1>Program index</h1>
 
+
+    <h1>Program index</h1>
+    <a class="btn btn-info" href="{{ path('program_new') }}">Create new</a>
     <table class="table">
         <thead>
             <tr>
@@ -40,5 +42,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('program_new') }}">Create new</a>
+
 {% endblock %}

@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Actor index</h1>
+    <a class="btn btn-info" href="{{ path('actor_new') }}">Create new</a>
 
     <table class="table">
         <thead>
@@ -31,5 +32,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('actor_new') }}">Create new</a>
 {% endblock %}
